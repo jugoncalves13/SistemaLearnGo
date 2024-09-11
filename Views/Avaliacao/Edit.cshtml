@@ -1,0 +1,49 @@
+﻿@model SistemaLearnGo.Models.Avaliacao
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Avaliacao</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AvaliacaoId" />
+            <div class="form-group">
+                <label asp-for="AvaliacaoQuemAvaliou" class="control-label"></label>
+                <input asp-for="AvaliacaoQuemAvaliou" class="form-control" />
+                <span asp-validation-for="AvaliacaoQuemAvaliou" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvaliacaoAvaliado" class="control-label"></label>
+                <input asp-for="AvaliacaoAvaliado" class="form-control" />
+                <span asp-validation-for="AvaliacaoAvaliado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvaliacaoComentario" class="control-label"></label>
+                <input asp-for="AvaliacaoComentario" class="form-control" />
+                <span asp-validation-for="AvaliacaoComentario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CadastroId" class="control-label"></label>
+                <select asp-for="CadastroId" class="form-control" asp-items="ViewBag.CadastroId"></select>
+                <span asp-validation-for="CadastroId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

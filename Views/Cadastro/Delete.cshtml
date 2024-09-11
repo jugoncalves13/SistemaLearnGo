@@ -1,0 +1,69 @@
+﻿@model SistemaLearnGo.Models.Cadastro
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cadastro</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroNomeCompleto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroNomeCompleto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroDataNascimento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroDataNascimento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroRm)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroRm)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroCurso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroCurso)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroSenha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroSenha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CadastroEndereço)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CadastroEndereço)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Faculdade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Faculdade.FaculdadeId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CadastroId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

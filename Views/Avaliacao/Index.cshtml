@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SistemaLearnGo.Models.Avaliacao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AvaliacaoQuemAvaliou)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvaliacaoAvaliado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvaliacaoComentario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cadastro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliacaoQuemAvaliou)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliacaoAvaliado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliacaoComentario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cadastro.CadastroId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AvaliacaoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AvaliacaoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AvaliacaoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

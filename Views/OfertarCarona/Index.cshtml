@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SistemaLearnGo.Models.OfertarCarona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OfertarCaronaPeriodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfertarCaronaHorário)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfertarCaronaEndereço)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfertarCaronaVagas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfertarCaronaVeiculo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfertarCaronaPeriodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfertarCaronaHorário)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfertarCaronaEndereço)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfertarCaronaVagas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfertarCaronaVeiculo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OfertarCaronaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OfertarCaronaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OfertarCaronaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
