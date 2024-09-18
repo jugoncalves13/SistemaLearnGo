@@ -21,7 +21,7 @@ namespace SistemaLearnGo.Controllers
         // GET: Avaliacao
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Avaliacao.Include(a => a.Cadastro);
+            var contexto = _context.Avaliacao.Include(a => a.Cadastro).Include(a => a.Perfil).Include(a => a.Perfil.Cadastro);
             return View(await contexto.ToListAsync());
         }
 
@@ -35,6 +35,8 @@ namespace SistemaLearnGo.Controllers
 
             var avaliacao = await _context.Avaliacao
                 .Include(a => a.Cadastro)
+                .Include(a => a.Perfil)
+                .Include(a => a.Perfil.Cadastro)
                 .FirstOrDefaultAsync(m => m.AvaliacaoId == id);
             if (avaliacao == null)
             {
@@ -47,7 +49,9 @@ namespace SistemaLearnGo.Controllers
         // GET: Avaliacao/Create
         public IActionResult Create()
         {
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId");
+
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto");
+            ViewData["PerfilId"] = new SelectList(_context.Perfil.Include(a => a.Cadastro), "PerfilId", "Cadastro.CadastroNomeCompleto");
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AvaliacaoId,AvaliacaoQuemAvaliou,AvaliacaoAvaliado,AvaliacaoComentario,CadastroId")] Avaliacao avaliacao)
+        public async Task<IActionResult> Create([Bind("AvaliacaoId,CadastroId,PerfilId,AvaliacaoComentario")] Avaliacao avaliacao)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +68,8 @@ namespace SistemaLearnGo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", avaliacao.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", avaliacao.CadastroId);
+            ViewData["PerfilId"] = new SelectList(_context.Perfil.Include(a => a.Cadastro), "PerfilId", "Cadastro.CadastroNomeCompleto", avaliacao.PerfilId);
             return View(avaliacao);
         }
 
@@ -81,7 +86,8 @@ namespace SistemaLearnGo.Controllers
             {
                 return NotFound();
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", avaliacao.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", avaliacao.CadastroId);
+            ViewData["PerfilId"] = new SelectList(_context.Perfil.Include(a => a.Cadastro), "PerfilId", "Cadastro.CadastroNomeCompleto", avaliacao.PerfilId);
             return View(avaliacao);
         }
 
@@ -90,7 +96,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AvaliacaoId,AvaliacaoQuemAvaliou,AvaliacaoAvaliado,AvaliacaoComentario,CadastroId")] Avaliacao avaliacao)
+        public async Task<IActionResult> Edit(int id, [Bind("AvaliacaoId,CadastroId,PerfilId,AvaliacaoComentario")] Avaliacao avaliacao)
         {
             if (id != avaliacao.AvaliacaoId)
             {
@@ -117,7 +123,8 @@ namespace SistemaLearnGo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", avaliacao.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", avaliacao.CadastroId);
+            ViewData["PerfilId"] = new SelectList(_context.Perfil.Include(a=> a.Cadastro), "PerfilId", "Cadastro.CadastroNomeCompleto", avaliacao.PerfilId);
             return View(avaliacao);
         }
 
@@ -131,6 +138,7 @@ namespace SistemaLearnGo.Controllers
 
             var avaliacao = await _context.Avaliacao
                 .Include(a => a.Cadastro)
+                .Include(a => a.Perfil)
                 .FirstOrDefaultAsync(m => m.AvaliacaoId == id);
             if (avaliacao == null)
             {

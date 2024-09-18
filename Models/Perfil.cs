@@ -19,5 +19,8 @@ namespace SistemaLearnGo.Models
         public int CadastroId { get; set; }
         public Cadastro? Cadastro { get; set; }
 
+        [NotMapped]
+        public string PerfilCadastroNome { get; set; } = string.Empty;
+
     }
 }

@@ -10,25 +10,16 @@ namespace SistemaLearnGo.Models
         [Display(Name = "Código da Avaliação")]
 
         public int AvaliacaoId { get; set; }
-
-        [Column("AvaliacaoQuemAvaliou")]
-        [Display(Name = "Pessoa que Avaliou")]
-
-        public string AvaliacaoQuemAvaliou { get; set; } = string.Empty;
-
-        [Column("AvaliacaoAvaliado")]
-        [Display(Name = "Pessoa que foi Avaliado")]
-
-        public string AvaliacaoAvaliado { get; set; } = string.Empty;
-
-        [Column("AvaliacaoComentario")]
-        [Display(Name = "Comentário")]
-
-        public string AvaliacaoComentario { get; set; } = string.Empty;
-
+        
         [ForeignKey("CadastroId")]
         public int CadastroId { get; set; }
         public Cadastro? Cadastro { get; set; }
+
+        [ForeignKey("PerfilId")]
+        public int PerfilId { get; set; }
+        public Perfil? Perfil { get; set; }
+
+        public string AvaliacaoComentario { get; set; } = string.Empty;
 
     }
 }

@@ -47,7 +47,7 @@ namespace SistemaLearnGo.Controllers
         // GET: SolicitarCarona/Create
         public IActionResult Create()
         {
-            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeId");
+            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeNome");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace SistemaLearnGo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeId", solicitarCarona.FaculdadeId);
+            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeNome", solicitarCarona.FaculdadeId);
             return View(solicitarCarona);
         }
 
@@ -81,7 +81,7 @@ namespace SistemaLearnGo.Controllers
             {
                 return NotFound();
             }
-            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeId", solicitarCarona.FaculdadeId);
+            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeNome", solicitarCarona.FaculdadeId);
             return View(solicitarCarona);
         }
 
@@ -117,7 +117,7 @@ namespace SistemaLearnGo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeId", solicitarCarona.FaculdadeId);
+            ViewData["FaculdadeId"] = new SelectList(_context.Faculdade, "FaculdadeId", "FaculdadeNome", solicitarCarona.FaculdadeId);
             return View(solicitarCarona);
         }
 

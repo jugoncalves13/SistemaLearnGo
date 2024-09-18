@@ -47,7 +47,7 @@ namespace SistemaLearnGo.Controllers
         // GET: Perfil/Create
         public IActionResult Create()
         {
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId");
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace SistemaLearnGo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", perfil.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", perfil.CadastroId);
             return View(perfil);
         }
 
@@ -81,7 +81,7 @@ namespace SistemaLearnGo.Controllers
             {
                 return NotFound();
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", perfil.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", perfil.CadastroId);
             return View(perfil);
         }
 
@@ -117,7 +117,7 @@ namespace SistemaLearnGo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", perfil.CadastroId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", perfil.CadastroId);
             return View(perfil);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaLearnGo.Models;
 
@@ -11,9 +12,11 @@ using SistemaLearnGo.Models;
 namespace SistemaLearnGo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20240918123358_Alteracao-Avaliacao")]
+    partial class AlteracaoAvaliacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,21 +34,12 @@ namespace SistemaLearnGo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AvaliacaoId"));
 
-                    b.Property<string>("AvaliacaoComentario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CadastroId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PerfilId")
                         .HasColumnType("int");
 
                     b.HasKey("AvaliacaoId");
 
                     b.HasIndex("CadastroId");
-
-                    b.HasIndex("PerfilId");
 
                     b.ToTable("Avaliacao");
                 });
@@ -255,15 +249,7 @@ namespace SistemaLearnGo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SistemaLearnGo.Models.Perfil", "Perfil")
-                        .WithMany()
-                        .HasForeignKey("PerfilId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Cadastro");
-
-                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("SistemaLearnGo.Models.Cadastro", b =>
