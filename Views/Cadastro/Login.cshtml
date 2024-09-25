@@ -1,0 +1,45 @@
+﻿@model SistemaLearnGo.Models.Cadastro
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<link href="../css/layoutlogin.css" rel="stylesheet" />
+
+<div class="login">
+    <div class="col-md-12 caixa">
+        <img src="~/css/learngo (1).png" class="logo"/>
+        <h4>Digite o email e a senha para realizar o login.</h4>
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CadastroEmail" class="control-label"></label>
+            </div>
+            <div class="form-group">               
+                <input asp-for="CadastroEmail" class="form-control" />
+                <span asp-validation-for="CadastroEmail" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                 <label asp-for="CadastroSenha" class="control-label"></label>
+            </div>
+            <div class="form-group">               
+                <input asp-for="CadastroSenha" class="form-control" />
+                <span asp-validation-for="CadastroSenha" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Entrar" class="btn btn-primary btn-geral" />
+            </div>
+            <br/>
+            <h3>@ViewBag.Mensagem</h3>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -18,6 +18,26 @@ namespace SistemaLearnGo.Controllers
             _context = context;
         }
 
+        public IActionResult Login(Cadastro cadastro)
+        {
+            if (cadastro.CadastroEmail == "")
+                return View();
+            else
+            {
+                var verificaLogin = _context.Cadastro.Where(x => x.CadastroEmail == cadastro.CadastroEmail
+                && x.CadastroSenha == cadastro.CadastroSenha).FirstOrDefault();
+                if (verificaLogin == null)
+                {
+                    ViewBag.Mensagem = "Usuário ou senha não existe";
+                    return View();
+                }
+                else
+                {
+                    return View("~/Views/Home/Index.cshtml");
+                }
+            }
+        }
+
         // GET: Cadastro
         public async Task<IActionResult> Index()
         {

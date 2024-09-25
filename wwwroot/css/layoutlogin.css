@@ -1,0 +1,41 @@
+﻿body {
+    margin-bottom: 60px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #DFD8FF;
+    margin-top: 90px;
+}
+
+.titulo {
+    text-align: center;
+    
+}
+
+input {
+    background-color: #20164D;
+    color: white;
+    border: none;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-geral {
+    background-color: #FF784E;
+    border: none;
+    height: 40px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
