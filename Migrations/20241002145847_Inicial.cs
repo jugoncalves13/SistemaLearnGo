@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SistemaLearnGo.Migrations
 {
     /// <inheritdoc />
-    public partial class CriacaoSistema : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CaronaTipo",
+                columns: table => new
+                {
+                    CaronaTipoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CaronaTipoDescricao = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CaronaTipo", x => x.CaronaTipoId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Faculdade",
                 columns: table => new
@@ -23,37 +36,6 @@ namespace SistemaLearnGo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Faculdade", x => x.FaculdadeId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Login",
-                columns: table => new
-                {
-                    LoginId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LoginEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LoginSenha = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Login", x => x.LoginId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OfertarCarona",
-                columns: table => new
-                {
-                    OfertarCaronaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OfertarCaronaPeriodo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OfertarCaronaHorário = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OfertarCaronaEndereço = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OfertarCaronaVagas = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OfertarCaronaVeiculo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OfertarCarona", x => x.OfertarCaronaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,24 +65,33 @@ namespace SistemaLearnGo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SolicitarCarona",
+                name: "Carona",
                 columns: table => new
                 {
-                    SolicitarCaronaId = table.Column<int>(type: "int", nullable: false)
+                    CaronaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SolicitarCaronaNome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SolicitarCaronaHorário = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SolicitarCaronaEndereço = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FaculdadeId = table.Column<int>(type: "int", nullable: false)
+                    CaronaHorario = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CaronaVeiculo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaronaVagas = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaronaOrigem = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaronaDestino = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CadastroId = table.Column<int>(type: "int", nullable: false),
+                    CaronaTipoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SolicitarCarona", x => x.SolicitarCaronaId);
+                    table.PrimaryKey("PK_Carona", x => x.CaronaId);
                     table.ForeignKey(
-                        name: "FK_SolicitarCarona_Faculdade_FaculdadeId",
-                        column: x => x.FaculdadeId,
-                        principalTable: "Faculdade",
-                        principalColumn: "FaculdadeId",
+                        name: "FK_Carona_Cadastro_CadastroId",
+                        column: x => x.CadastroId,
+                        principalTable: "Cadastro",
+                        principalColumn: "CadastroId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Carona_CaronaTipo_CaronaTipoId",
+                        column: x => x.CaronaTipoId,
+                        principalTable: "CaronaTipo",
+                        principalColumn: "CaronaTipoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -110,10 +101,9 @@ namespace SistemaLearnGo.Migrations
                 {
                     AvaliacaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AvaliacaoQuemAvaliou = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvaliacaoAvaliado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvaliacaoComentario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CadastroId = table.Column<int>(type: "int", nullable: false)
+                    CadastroId = table.Column<int>(type: "int", nullable: false),
+                    CaronaId = table.Column<int>(type: "int", nullable: false),
+                    AvaliacaoComentario = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,26 +114,36 @@ namespace SistemaLearnGo.Migrations
                         principalTable: "Cadastro",
                         principalColumn: "CadastroId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Avaliacao_Carona_CaronaId",
+                        column: x => x.CaronaId,
+                        principalTable: "Carona",
+                        principalColumn: "CaronaId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Perfil",
+                name: "CaronaHasCadastro",
                 columns: table => new
                 {
-                    PerfilId = table.Column<int>(type: "int", nullable: false)
+                    CaronaHasCadastroId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PerfilFoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CadastroId = table.Column<int>(type: "int", nullable: false)
+                    CadastroId = table.Column<int>(type: "int", nullable: false),
+                    CaronaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Perfil", x => x.PerfilId);
+                    table.PrimaryKey("PK_CaronaHasCadastro", x => x.CaronaHasCadastroId);
                     table.ForeignKey(
-                        name: "FK_Perfil_Cadastro_CadastroId",
+                        name: "FK_CaronaHasCadastro_Cadastro_CadastroId",
                         column: x => x.CadastroId,
                         principalTable: "Cadastro",
                         principalColumn: "CadastroId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CaronaHasCadastro_Carona_CaronaId",
+                        column: x => x.CaronaId,
+                        principalTable: "Carona",
+                        principalColumn: "CaronaId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -152,19 +152,34 @@ namespace SistemaLearnGo.Migrations
                 column: "CadastroId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Avaliacao_CaronaId",
+                table: "Avaliacao",
+                column: "CaronaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cadastro_FaculdadeId",
                 table: "Cadastro",
                 column: "FaculdadeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Perfil_CadastroId",
-                table: "Perfil",
+                name: "IX_Carona_CadastroId",
+                table: "Carona",
                 column: "CadastroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SolicitarCarona_FaculdadeId",
-                table: "SolicitarCarona",
-                column: "FaculdadeId");
+                name: "IX_Carona_CaronaTipoId",
+                table: "Carona",
+                column: "CaronaTipoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CaronaHasCadastro_CadastroId",
+                table: "CaronaHasCadastro",
+                column: "CadastroId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CaronaHasCadastro_CaronaId",
+                table: "CaronaHasCadastro",
+                column: "CaronaId");
         }
 
         /// <inheritdoc />
@@ -174,19 +189,16 @@ namespace SistemaLearnGo.Migrations
                 name: "Avaliacao");
 
             migrationBuilder.DropTable(
-                name: "Login");
+                name: "CaronaHasCadastro");
 
             migrationBuilder.DropTable(
-                name: "OfertarCarona");
-
-            migrationBuilder.DropTable(
-                name: "Perfil");
-
-            migrationBuilder.DropTable(
-                name: "SolicitarCarona");
+                name: "Carona");
 
             migrationBuilder.DropTable(
                 name: "Cadastro");
+
+            migrationBuilder.DropTable(
+                name: "CaronaTipo");
 
             migrationBuilder.DropTable(
                 name: "Faculdade");

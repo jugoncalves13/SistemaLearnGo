@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SistemaLearnGo.Models.Carona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaHorario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaVeiculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaVagas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaOrigem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaDestino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaronaTipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaHorario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaVeiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaVagas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaOrigem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaDestino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cadastro.CadastroId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaronaTipo.CaronaTipoId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CaronaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CaronaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CaronaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

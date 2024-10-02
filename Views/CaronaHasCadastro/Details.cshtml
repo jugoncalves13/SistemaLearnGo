@@ -1,4 +1,4 @@
-﻿@model SistemaLearnGo.Models.Avaliacao
+﻿@model SistemaLearnGo.Models.CaronaHasCadastro
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Avaliacao</h4>
+    <h4>CaronaHasCadastro</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -22,15 +22,9 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Carona.CaronaId)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AvaliacaoComentario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AvaliacaoComentario)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.AvaliacaoId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.CaronaHasCadastroId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -12,7 +12,7 @@
     
 }
 
-input {
+input{
     background-color: #20164D;
     color: white;
     border: none;
@@ -22,8 +22,11 @@ input {
     margin-top: 10px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
-
+input::placeholder{
+    color:white;
+}
 .btn-geral {
     background-color: #FF784E;
     border: none;

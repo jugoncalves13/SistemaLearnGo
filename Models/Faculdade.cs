@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SistemaLearnGo.Models
 {
+    [Table("Faculdade")]
     public class Faculdade
     {
         [Column("FaculdadeId")]

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Contexto> //Juliani
-    (options => options.UseSqlServer("Data Source=SP-1491034\\SQLSENAI;Initial Catalog = SistemaLearnGo;" +
+    (options => options.UseSqlServer("Data Source=SP-1491034\\SQLSENAI;Initial Catalog = SistemaLearnGoNovo;" +
     " Integrated Security = True;TrustServerCertificate = True"));
 
 var app = builder.Build();

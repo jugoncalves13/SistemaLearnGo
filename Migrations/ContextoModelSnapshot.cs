@@ -38,14 +38,14 @@ namespace SistemaLearnGo.Migrations
                     b.Property<int>("CadastroId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PerfilId")
+                    b.Property<int>("CaronaId")
                         .HasColumnType("int");
 
                     b.HasKey("AvaliacaoId");
 
                     b.HasIndex("CadastroId");
 
-                    b.HasIndex("PerfilId");
+                    b.HasIndex("CaronaId");
 
                     b.ToTable("Avaliacao");
                 });
@@ -104,6 +104,97 @@ namespace SistemaLearnGo.Migrations
                     b.ToTable("Cadastro");
                 });
 
+            modelBuilder.Entity("SistemaLearnGo.Models.Carona", b =>
+                {
+                    b.Property<int>("CaronaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CaronaId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CaronaId"));
+
+                    b.Property<int>("CadastroId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CaronaDestino")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CaronaDestino");
+
+                    b.Property<DateTime>("CaronaHorario")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CaronaHorario");
+
+                    b.Property<string>("CaronaOrigem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CaronaOrigem");
+
+                    b.Property<int>("CaronaTipoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CaronaVagas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CaronaVagas");
+
+                    b.Property<string>("CaronaVeiculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CaronaVeiculo");
+
+                    b.HasKey("CaronaId");
+
+                    b.HasIndex("CadastroId");
+
+                    b.HasIndex("CaronaTipoId");
+
+                    b.ToTable("Carona");
+                });
+
+            modelBuilder.Entity("SistemaLearnGo.Models.CaronaHasCadastro", b =>
+                {
+                    b.Property<int>("CaronaHasCadastroId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CaronaHasCadastroId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CaronaHasCadastroId"));
+
+                    b.Property<int>("CadastroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CaronaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CaronaHasCadastroId");
+
+                    b.HasIndex("CadastroId");
+
+                    b.HasIndex("CaronaId");
+
+                    b.ToTable("CaronaHasCadastro");
+                });
+
+            modelBuilder.Entity("SistemaLearnGo.Models.CaronaTipo", b =>
+                {
+                    b.Property<int>("CaronaTipoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CaronaTipoId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CaronaTipoId"));
+
+                    b.Property<string>("CaronaTipoDescricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CaronaTipoDescricao");
+
+                    b.HasKey("CaronaTipoId");
+
+                    b.ToTable("CaronaTipo");
+                });
+
             modelBuilder.Entity("SistemaLearnGo.Models.Faculdade", b =>
                 {
                     b.Property<int>("FaculdadeId")
@@ -128,125 +219,6 @@ namespace SistemaLearnGo.Migrations
                     b.ToTable("Faculdade");
                 });
 
-            modelBuilder.Entity("SistemaLearnGo.Models.Login", b =>
-                {
-                    b.Property<int>("LoginId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("LoginId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoginId"));
-
-                    b.Property<string>("LoginEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("LoginEmail");
-
-                    b.Property<string>("LoginSenha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("LoginSenha");
-
-                    b.HasKey("LoginId");
-
-                    b.ToTable("Login");
-                });
-
-            modelBuilder.Entity("SistemaLearnGo.Models.OfertarCarona", b =>
-                {
-                    b.Property<int>("OfertarCaronaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("OfertarCaronaId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OfertarCaronaId"));
-
-                    b.Property<string>("OfertarCaronaEndereço")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OfertarCaronaEndereço");
-
-                    b.Property<DateTime>("OfertarCaronaHorário")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("OfertarCaronaHorário");
-
-                    b.Property<string>("OfertarCaronaPeriodo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OfertarCaronaPeriodo");
-
-                    b.Property<string>("OfertarCaronaVagas")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OfertarCaronaVagas");
-
-                    b.Property<string>("OfertarCaronaVeiculo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("OfertarCaronaVeiculo");
-
-                    b.HasKey("OfertarCaronaId");
-
-                    b.ToTable("OfertarCarona");
-                });
-
-            modelBuilder.Entity("SistemaLearnGo.Models.Perfil", b =>
-                {
-                    b.Property<int>("PerfilId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("PerfilId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PerfilId"));
-
-                    b.Property<int>("CadastroId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PerfilFoto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("PerfilFoto");
-
-                    b.HasKey("PerfilId");
-
-                    b.HasIndex("CadastroId");
-
-                    b.ToTable("Perfil");
-                });
-
-            modelBuilder.Entity("SistemaLearnGo.Models.SolicitarCarona", b =>
-                {
-                    b.Property<int>("SolicitarCaronaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("SolicitarCaronaId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SolicitarCaronaId"));
-
-                    b.Property<int>("FaculdadeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SolicitarCaronaEndereço")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SolicitarCaronaEndereço");
-
-                    b.Property<DateTime>("SolicitarCaronaHorário")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("SolicitarCaronaHorário");
-
-                    b.Property<string>("SolicitarCaronaNome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SolicitarCaronaNome");
-
-                    b.HasKey("SolicitarCaronaId");
-
-                    b.HasIndex("FaculdadeId");
-
-                    b.ToTable("SolicitarCarona");
-                });
-
             modelBuilder.Entity("SistemaLearnGo.Models.Avaliacao", b =>
                 {
                     b.HasOne("SistemaLearnGo.Models.Cadastro", "Cadastro")
@@ -255,15 +227,15 @@ namespace SistemaLearnGo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SistemaLearnGo.Models.Perfil", "Perfil")
+                    b.HasOne("SistemaLearnGo.Models.Carona", "Carona")
                         .WithMany()
-                        .HasForeignKey("PerfilId")
+                        .HasForeignKey("CaronaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cadastro");
 
-                    b.Navigation("Perfil");
+                    b.Navigation("Carona");
                 });
 
             modelBuilder.Entity("SistemaLearnGo.Models.Cadastro", b =>
@@ -277,7 +249,7 @@ namespace SistemaLearnGo.Migrations
                     b.Navigation("Faculdade");
                 });
 
-            modelBuilder.Entity("SistemaLearnGo.Models.Perfil", b =>
+            modelBuilder.Entity("SistemaLearnGo.Models.Carona", b =>
                 {
                     b.HasOne("SistemaLearnGo.Models.Cadastro", "Cadastro")
                         .WithMany()
@@ -285,18 +257,34 @@ namespace SistemaLearnGo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cadastro");
-                });
-
-            modelBuilder.Entity("SistemaLearnGo.Models.SolicitarCarona", b =>
-                {
-                    b.HasOne("SistemaLearnGo.Models.Faculdade", "Faculdade")
+                    b.HasOne("SistemaLearnGo.Models.CaronaTipo", "CaronaTipo")
                         .WithMany()
-                        .HasForeignKey("FaculdadeId")
+                        .HasForeignKey("CaronaTipoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Faculdade");
+                    b.Navigation("Cadastro");
+
+                    b.Navigation("CaronaTipo");
+                });
+
+            modelBuilder.Entity("SistemaLearnGo.Models.CaronaHasCadastro", b =>
+                {
+                    b.HasOne("SistemaLearnGo.Models.Cadastro", "Cadastro")
+                        .WithMany()
+                        .HasForeignKey("CadastroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaLearnGo.Models.Carona", "Carona")
+                        .WithMany()
+                        .HasForeignKey("CaronaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cadastro");
+
+                    b.Navigation("Carona");
                 });
 #pragma warning restore 612, 618
         }

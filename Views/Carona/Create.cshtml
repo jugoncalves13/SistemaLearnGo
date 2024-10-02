@@ -1,0 +1,61 @@
+﻿@model SistemaLearnGo.Models.Carona
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Carona</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CaronaHorario" class="control-label"></label>
+                <input asp-for="CaronaHorario" class="form-control" />
+                <span asp-validation-for="CaronaHorario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaronaVeiculo" class="control-label"></label>
+                <input asp-for="CaronaVeiculo" class="form-control" />
+                <span asp-validation-for="CaronaVeiculo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaronaVagas" class="control-label"></label>
+                <input asp-for="CaronaVagas" class="form-control" />
+                <span asp-validation-for="CaronaVagas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaronaOrigem" class="control-label"></label>
+                <input asp-for="CaronaOrigem" class="form-control" />
+                <span asp-validation-for="CaronaOrigem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaronaDestino" class="control-label"></label>
+                <input asp-for="CaronaDestino" class="form-control" />
+                <span asp-validation-for="CaronaDestino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CadastroId" class="control-label"></label>
+                <select asp-for="CadastroId" class ="form-control" asp-items="ViewBag.CadastroId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaronaTipoId" class="control-label"></label>
+                <select asp-for="CaronaTipoId" class ="form-control" asp-items="ViewBag.CaronaTipoId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
