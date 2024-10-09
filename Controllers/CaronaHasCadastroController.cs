@@ -48,8 +48,8 @@ namespace SistemaLearnGo.Controllers
         // GET: CaronaHasCadastro/Create
         public IActionResult Create()
         {
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId");
-            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaId");
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto");
+            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaHorario");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace SistemaLearnGo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", caronaHasCadastro.CadastroId);
-            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaId", caronaHasCadastro.CaronaId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", caronaHasCadastro.CadastroId);
+            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaHorario", caronaHasCadastro.CaronaId);
             return View(caronaHasCadastro);
         }
 
@@ -84,8 +84,8 @@ namespace SistemaLearnGo.Controllers
             {
                 return NotFound();
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", caronaHasCadastro.CadastroId);
-            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaId", caronaHasCadastro.CaronaId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", caronaHasCadastro.CadastroId);
+            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaHorario", caronaHasCadastro.CaronaId);
             return View(caronaHasCadastro);
         }
 
@@ -121,8 +121,8 @@ namespace SistemaLearnGo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroId", caronaHasCadastro.CadastroId);
-            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaId", caronaHasCadastro.CaronaId);
+            ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", caronaHasCadastro.CadastroId);
+            ViewData["CaronaId"] = new SelectList(_context.Carona, "CaronaId", "CaronaHorario", caronaHasCadastro.CaronaId);
             return View(caronaHasCadastro);
         }
 

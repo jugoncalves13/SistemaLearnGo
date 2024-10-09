@@ -46,7 +46,11 @@ input {
     border: none;
     width: 415px;
 }
-
+.btn-primary {
+    background-color: #FF784E;
+    border: none;
+    width: 415px;
+}
 
 .logo {
     width: 100px;
