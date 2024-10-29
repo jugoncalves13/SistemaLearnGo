@@ -21,7 +21,7 @@ namespace SistemaLearnGo.Controllers
         // GET: Carona
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Carona.Include(c => c.Cadastro).Include(c => c.CaronaTipo);
+            var contexto = _context.Carona.Include(c => c.Cadastro);
             return View(await contexto.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace SistemaLearnGo.Controllers
 
             var carona = await _context.Carona
                 .Include(c => c.Cadastro)
-                .Include(c => c.CaronaTipo)
                 .FirstOrDefaultAsync(m => m.CaronaId == id);
             if (carona == null)
             {
@@ -49,7 +48,7 @@ namespace SistemaLearnGo.Controllers
         public IActionResult Create()
         {
             ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto");
-            ViewData["CaronaTipoId"] = new SelectList(_context.CaronaTipo, "CaronaTipoId", "CaronaTipoDescricao");
+            
             return View();
         }
 
@@ -58,7 +57,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CaronaId,CaronaHorario,CaronaVeiculo,CaronaVagas,CaronaOrigem,CaronaDestino,CadastroId,CaronaTipoId")] Carona carona)
+        public async Task<IActionResult> Create([Bind("CaronaId,CaronaHorario,CaronaVeiculo,CaronaVagas,CaronaOrigem,CaronaDestino,CadastroId")] Carona carona)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +66,7 @@ namespace SistemaLearnGo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", carona.CadastroId);
-            ViewData["CaronaTipoId"] = new SelectList(_context.CaronaTipo, "CaronaTipoId", "CaronaTipoDescricao", carona.CaronaTipoId);
+            
             return View(carona);
         }
 
@@ -85,7 +84,7 @@ namespace SistemaLearnGo.Controllers
                 return NotFound();
             }
             ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", carona.CadastroId);
-            ViewData["CaronaTipoId"] = new SelectList(_context.CaronaTipo, "CaronaTipoId", "CaronaTipoDescricao", carona.CaronaTipoId);
+            
             return View(carona);
         }
 
@@ -94,7 +93,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaronaId,CaronaHorario,CaronaVeiculo,CaronaVagas,CaronaOrigem,CaronaDestino,CadastroId,CaronaTipoId")] Carona carona)
+        public async Task<IActionResult> Edit(int id, [Bind("CaronaId,CaronaHorario,CaronaVeiculo,CaronaVagas,CaronaOrigem,CaronaDestino,CadastroId")] Carona carona)
         {
             if (id != carona.CaronaId)
             {
@@ -122,7 +121,6 @@ namespace SistemaLearnGo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CadastroId"] = new SelectList(_context.Cadastro, "CadastroId", "CadastroNomeCompleto", carona.CadastroId);
-            ViewData["CaronaTipoId"] = new SelectList(_context.CaronaTipo, "CaronaTipoId", "CaronaTipoDescricao", carona.CaronaTipoId);
             return View(carona);
         }
 
@@ -136,7 +134,6 @@ namespace SistemaLearnGo.Controllers
 
             var carona = await _context.Carona
                 .Include(c => c.Cadastro)
-                .Include(c => c.CaronaTipo)
                 .FirstOrDefaultAsync(m => m.CaronaId == id);
             if (carona == null)
             {

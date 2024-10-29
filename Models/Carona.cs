@@ -34,10 +34,6 @@ namespace SistemaLearnGo.Models
         public int CadastroId { get; set; }
         public Cadastro? Cadastro { get; set; }
 
-        [ForeignKey("CaronaTipoId")]
-        public int CaronaTipoId { get; set; }
-        public CaronaTipo? CaronaTipo { get; set; }
-
        
 
 

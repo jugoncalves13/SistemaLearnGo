@@ -10,8 +10,6 @@ namespace SistemaLearnGo.Models
         public DbSet<Faculdade>? Faculdade { get; set; }
         public DbSet<CaronaHasCadastro>? CaronaHasCadastro { get; set; }
         public DbSet<Carona>? Carona { get; set; }
-
-        public DbSet<CaronaTipo>? CaronaTipo { get; set; }
         public DbSet<Avaliacao>? Avaliacao { get; set; }
 
     }
