@@ -16,8 +16,10 @@ namespace SistemaLearnGo.Models
 
         public string CadastroNomeCompleto { get; set; } = string.Empty;
 
-        [Column("CadastroDataNascimento")]
-        [Display(Name = "Data de Nascimento")]
+        [Column("CadastroFoto")]
+        [Display(Name = "Foto")]
+
+        public string CadastroFoto { get; set; } = string.Empty;
 
         public string CadastroDataNascimento { get; set; } = string.Empty;
 

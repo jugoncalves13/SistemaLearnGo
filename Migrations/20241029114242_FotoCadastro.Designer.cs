@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaLearnGo.Models;
 
@@ -11,9 +12,11 @@ using SistemaLearnGo.Models;
 namespace SistemaLearnGo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20241029114242_FotoCadastro")]
+    partial class FotoCadastro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +84,7 @@ namespace SistemaLearnGo.Migrations
                     b.Property<string>("CadastroFoto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CadastroFoto");
+                        .HasColumnName("CadastroDataNascimento");
 
                     b.Property<string>("CadastroNomeCompleto")
                         .IsRequired()
@@ -105,7 +108,11 @@ namespace SistemaLearnGo.Migrations
 
                     b.HasIndex("FaculdadeId");
 
-                    b.ToTable("Cadastro");
+                    b.ToTable("Cadastro", t =>
+                        {
+                            t.Property("CadastroDataNascimento")
+                                .HasColumnName("CadastroDataNascimento1");
+                        });
                 });
 
             modelBuilder.Entity("SistemaLearnGo.Models.Carona", b =>

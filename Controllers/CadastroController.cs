@@ -76,7 +76,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CadastroId,CadastroNomeCompleto,CadastroDataNascimento,CadastroRm,CadastroCurso,CadastroEmail,CadastroSenha,CadastroEndereço,FaculdadeId")] Cadastro cadastro)
+        public async Task<IActionResult> Create([Bind("CadastroId, CadastroFoto, CadastroNomeCompleto,CadastroDataNascimento,CadastroRm,CadastroCurso,CadastroEmail,CadastroSenha,CadastroEndereço,FaculdadeId")] Cadastro cadastro)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace SistemaLearnGo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CadastroId,CadastroNomeCompleto,CadastroDataNascimento,CadastroRm,CadastroCurso,CadastroEmail,CadastroSenha,CadastroEndereço,FaculdadeId")] Cadastro cadastro)
+        public async Task<IActionResult> Edit(int id, [Bind("CadastroId,CadastroNomeCompleto, CadastroFoto, CadastroDataNascimento,CadastroRm,CadastroCurso,CadastroEmail,CadastroSenha,CadastroEndereço,FaculdadeId")] Cadastro cadastro)
         {
             if (id != cadastro.CadastroId)
             {

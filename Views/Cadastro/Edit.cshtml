@@ -19,6 +19,11 @@
                 <span asp-validation-for="CadastroNomeCompleto" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="CadastroFoto" class="control-label"></label>
+                <input asp-for="CadastroFoto" class="form-control" />
+                <span asp-validation-for="CadastroFoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CadastroDataNascimento" class="control-label"></label>
                 <input asp-for="CadastroDataNascimento" class="form-control" />
                 <span asp-validation-for="CadastroDataNascimento" class="text-danger"></span>
@@ -54,7 +59,7 @@
                 <span asp-validation-for="FaculdadeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>

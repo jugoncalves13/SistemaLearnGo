@@ -6,13 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<Contexto> //Juliani
+/*builder.Services.AddDbContext<Contexto> //Juliani
     (options => options.UseSqlServer("Data Source=SP-1491034\\SQLSENAI;Initial Catalog = SistemaLearnGoNovo;" +
-    " Integrated Security = True;TrustServerCertificate = True"));
+    " Integrated Security = True;TrustServerCertificate = True"));*/
 
 /*builder.Services.AddDbContext<Contexto> //Gabi
     (options => options.UseSqlServer("Data Source=SP-1491009\\SQLSENAI;Initial Catalog = SistemaLearnGoNovo;" +
     " Integrated Security = True;TrustServerCertificate = True"));*/
+
+builder.Services.AddDbContext<Contexto> //Isabela
+    (options => options.UseSqlServer("Data Source=SP-1491007\\SQLSENAI;Initial Catalog = SistemaLearnGoNovo;" +
+    " Integrated Security = True;TrustServerCertificate = True"));
 
 var app = builder.Build();
 
@@ -33,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Cadastro}/{action=Login}");
+    pattern: "{controller=Cadastro}/{action=Login}/{id?}");
 
 app.Run();
